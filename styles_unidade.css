@@ -119,7 +119,7 @@ th {
 }
 
 .orientacao-bloco h3 {
-    color: #f7fb22; /* Amarelo */
+    color: #000000; /* Preto */
     border-bottom: 1px dashed #ccc;
     padding-bottom: 5px;
     margin-bottom: 10px;
@@ -152,3 +152,4 @@ th {
     border-color: #28a745; /* Verde */
     background-color: #4ad36a; /* Fundo verde claro */
 }
+
