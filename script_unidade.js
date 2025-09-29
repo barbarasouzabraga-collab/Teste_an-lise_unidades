@@ -1263,21 +1263,49 @@ const baseDeHabilidades = [
   }
 ];
 
+// BASE DE TEXTOS DE ORIENTAÇÃO PEDAGÓGICA CUSTOMIZADA POR UNIDADE TEMÁTICA
+const orientacoesPedagogicas = {
+    "Geometria": {
+        "A": "reforçar a identificação e a manipulação de formas (bidimensionais e tridimensionais) utilizando materiais concretos, como blocos lógicos e Tangram. Focar na correlação entre o objeto real e sua representação plana.",
+        "B": "focar em exercícios de aplicação e resolução de problemas que envolvam a interpretação de coordenadas e a movimentação em malhas quadriculadas. Explore a visualização espacial sem o uso de material concreto.",
+        "C": "promover atividades de aprofundamento e desafios complexos, como a análise de vistas ortogonais e a projeção de sombras. Encoraje a criação de figuras compostas e o cálculo de perímetros/áreas complexas."
+    },
+    
+    "Grandezas e medidas": {
+        "A": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+        "B": "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+        "C": "excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    "Números": {
+        "A": "retomar os conceitos de valor posicional e a relação entre as diferentes representações numéricas (frações, decimais). Utilizar o quadro de ordens e classes e a reta numérica para fixação.",
+        "B": "focar em problemas que exijam o domínio das quatro operações e a leitura/interpretação de gráficos e tabelas. Trabalhar com a comparação e ordenação de números em diferentes contextos.",
+        "C": "promover a resolução de situações-problema avançadas que envolvam operações com potências, raízes e números racionais em contextos reais, explorando a matemática financeira básica."
+    },
+    "Probabilidade e Estatística": {
+        "A": "ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+        "B": "eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        "C": "emo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit."
+    },
+    "Álgebra": {
+        "A": "sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+        "B": "eque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur.",
+        "C": "adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."
+    },
+};
+
 // Elementos da interface (DOM)
 const inputContainer = document.getElementById("habilidades-input-container");
 const gerarOrientacaoBtn = document.getElementById("gerarOrientacaoBtn");
 const resultadoSection = document.getElementById("resultado-section");
 const resultadoContainer = document.getElementById("resultado-container");
-// NOVO ELEMENTO PARA O FILTRO
 const etapaFilterContainer = document.getElementById("etapa-filter-container");
 
 // ----------------------------------------------------
-// 1. Lógica do Filtro de Etapa (Nova Função)
+// 1. Lógica do Filtro de Etapa
 // ----------------------------------------------------
 
 function obterEtapasUnicas() {
     const etapas = baseDeHabilidades.map(h => h.ETAPA);
-    // Usa Set para obter valores únicos e sort() para ordenar
     return [...new Set(etapas)].sort();
 }
 
@@ -1285,7 +1313,7 @@ function criarSeletorEtapa() {
     const etapasUnicas = obterEtapasUnicas();
     if (etapasUnicas.length === 0) return;
 
-    let selectHTML = '<h2>1. Escolha a Etapa para Análise:</h2><select id="etapa-selector">';
+    let selectHTML = '<h3>1. Escolha a Etapa para Análise:</h3><select id="etapa-selector">';
     selectHTML += '<option value="">-- Selecione a Etapa --</option>';
 
     etapasUnicas.forEach(etapa => {
@@ -1295,18 +1323,16 @@ function criarSeletorEtapa() {
     selectHTML += '</select>';
     etapaFilterContainer.innerHTML = selectHTML;
 
-    // Adiciona o listener para filtrar os inputs ao selecionar
     const seletorEtapa = document.getElementById('etapa-selector');
     seletorEtapa.addEventListener('change', filtrarEExibirInputs);
 
-    // Esconde os inputs e botão até a escolha
     inputContainer.style.display = 'none';
     gerarOrientacaoBtn.style.display = 'none';
     resultadoSection.style.display = 'none';
 }
 
 // ----------------------------------------------------
-// 2. Geração e Filtro do Formulário de Entrada (Ajustada)
+// 2. Geração e Filtro do Formulário de Entrada
 // ----------------------------------------------------
 
 function filtrarEExibirInputs() {
@@ -1315,10 +1341,10 @@ function filtrarEExibirInputs() {
 
     inputContainer.innerHTML = "";
     
-    // Esconde tudo se nada estiver selecionado
     if (!etapaSelecionada) {
         inputContainer.style.display = 'none';
         gerarOrientacaoBtn.style.display = 'none';
+        resultadoSection.style.display = 'none';
         return;
     }
 
@@ -1328,11 +1354,9 @@ function filtrarEExibirInputs() {
         const div = document.createElement("div");
         div.classList.add("habilidade-item");
 
-        // REQUISIÇÃO 2: Remove a informação de Corte Intermediário
         const label = document.createElement("label");
         label.innerHTML = `<strong>${habilidade.ID_Habilidade} - ${habilidade.DISCIPLINA} (${habilidade.ETAPA}):</strong> ${habilidade.Habilidade}`;
 
-        // Campo para digitar o percentual
         const input = document.createElement("input");
         input.type = "number";
         input.min = 0;
@@ -1347,13 +1371,10 @@ function filtrarEExibirInputs() {
         inputContainer.appendChild(div);
     });
     
-    // Exibe os inputs e o botão de gerar
     inputContainer.style.display = 'block';
     gerarOrientacaoBtn.style.display = 'block';
     resultadoSection.style.display = 'none';
 }
-
-// ... (código existente até aqui)
 
 // ----------------------------------------------------
 // 3. Lógica de Cálculo e Decisão (Análise por Unidade Temática)
@@ -1364,19 +1385,16 @@ gerarOrientacaoBtn.addEventListener("click", gerarOrientacoes);
 function gerarOrientacoes() {
     resultadoContainer.innerHTML = "";
     
-    // Objeto para armazenar as contagens agrupadas por UNIDADE TEMÁTICA
+    // Objeto para armazenar as contagens e a LISTA DE DESCRITORES agrupadas por UNIDADE TEMÁTICA
     const analisePorUnidade = {};
     let todosValidos = true;
     let acertosInvalidos = 0;
 
     // 1. Processamento e Contagem dos Descritores
-    
-    // Itera sobre a base inteira, mas processa apenas os inputs que foram criados (da Etapa selecionada)
     baseDeHabilidades.forEach(habilidade => {
         const inputId = `input-${habilidade.ID_Habilidade}-${habilidade.ETAPA}`;
         const input = document.getElementById(inputId);
         
-        // Ignora se o input não existe (não é da etapa selecionada)
         if (!input) return;
 
         const acertosDigitados = input.value;
@@ -1389,32 +1407,39 @@ function gerarOrientacoes() {
              acertosInvalidos++;
              return; 
         }
-        input.style.border = ""; // Limpa a borda vermelha se for válido
+        input.style.border = "";
         
-        // Inicializa a unidade temática se for a primeira vez
         const unidade = habilidade["UNIDADE TEMÁTICA"];
+        
+        // Inicializa a unidade temática e as listas de descritores
         if (!analisePorUnidade[unidade]) {
             analisePorUnidade[unidade] = {
                 total: 0,
-                nivelA: 0, // < 60%
-                nivelB: 0, // 60% a 80%
-                nivelC: 0  // > 80%
+                nivelA: 0, 
+                nivelB: 0, 
+                nivelC: 0, 
+                listaA: [], // LISTA DE IDs
+                listaB: [], // LISTA DE IDs
+                listaC: []  // LISTA DE IDs
             };
         }
 
-        // Incrementa o total de descritores na unidade
         analisePorUnidade[unidade].total++;
-
-        // Classificação e Contagem por Nível
-        const pcA = habilidade.Percentual_Corte_A; // 0.6 (60%)
-        const pcB = habilidade.Percentual_Corte_B; // 0.8 (80%)
+        const idDescritor = habilidade.ID_Habilidade; 
         
-        if (acertos < pcA) { // Usando < 0.6 para corresponder ao texto sugerido < 60%
+        // Classificação, Contagem e Adição à Lista
+        const pcA = habilidade.Percentual_Corte_A; 
+        const pcB = habilidade.Percentual_Corte_B;
+        
+        if (acertos < pcA) {
             analisePorUnidade[unidade].nivelA++;
-        } else if (acertos >= pcA && acertos <= pcB) { // 60% a 80%
+            analisePorUnidade[unidade].listaA.push(idDescritor);
+        } else if (acertos >= pcA && acertos <= pcB) {
             analisePorUnidade[unidade].nivelB++;
-        } else { // > 80%
+            analisePorUnidade[unidade].listaB.push(idDescritor);
+        } else {
             analisePorUnidade[unidade].nivelC++;
+            analisePorUnidade[unidade].listaC.push(idDescritor);
         }
     });
 
@@ -1428,34 +1453,35 @@ function gerarOrientacoes() {
 
     let resultadosHTML = '';
 
-    // Loop pelas Unidades Temáticas para gerar o texto
     for (const [unidade, dados] of Object.entries(analisePorUnidade)) {
         const total = dados.total;
-        const nivelA = dados.nivelA;
-        const nivelB = dados.nivelB;
-        const nivelC = dados.nivelC;
+        
+        // Pega as orientações customizadas ou usa o texto padrão
+        const orientacao = orientacoesPedagogicas[unidade] || {
+            A: "reforçar a base e a conceituação inicial para melhor domínio do tema.",
+            B: "focar em exercícios de aplicação e resolução de problemas variados.",
+            C: "promover atividades de aprofundamento e desafios complexos."
+        };
 
-        // Define as orientações pedagógicas para o texto (ajustável)
-        const textoA = "reforçar a base e a conceituação inicial.";
-        const textoB = "focar em exercícios de aplicação e resolução de problemas variados.";
-        const textoC = "promover atividades de aprofundamento e desafios complexos.";
+        // Função auxiliar para gerar a lista de descritores formatada
+        const formatarLista = (lista) => lista.length > 0 ? `: <strong>${lista.join(', ')}</strong>` : '.';
 
         // Estrutura do bloco de texto por Unidade Temática
         resultadosHTML += `
             <div class="orientacao-bloco">
                 <h3>${unidade} (${total} Descritores)</h3>
                 <p>
-                    Dentre os <strong>${total} descritores</strong> desta unidade, a sua turma se distribui da seguinte forma:
+                    Dentre o(s) <strong>${total} descritor(es)</strong> desta unidade, eles se distribuem da seguinte forma:
                 </p>
                 <ul>
                     <li class="nivelA">
-                        Você tem <strong>${nivelA} descritores</strong> com percentual <strong>abaixo de 60%</strong>. Para estes, é preciso ${textoA}
+                        Você tem <strong>${dados.nivelA} descritor(es)</strong> com percentual <strong>abaixo de 60%</strong>${formatarLista(dados.listaA)}. Para esta faixa de acertos, é preciso ${orientacao.A}
                     </li>
                     <li class="nivelB">
-                        Você tem <strong>${nivelB} descritores</strong> com percentual <strong>entre 60% e 80%</strong>, os quais demandam ${textoB}
+                        Você tem <strong>${dados.nivelB} descritor(es)</strong> com percentual <strong>entre 60% e 80%</strong>${formatarLista(dados.listaB)}. Para esta faixa de acertos, é preciso ${orientacao.B}
                     </li>
                     <li class="nivelC">
-                        Você tem <strong>${nivelC} descritores</strong> com percentual <strong>acima de 80%</strong>. Estes demandam ${textoC}
+                        Você tem <strong>${dados.nivelC} descritor(es)</strong> com percentual <strong>acima de 80%</strong>${formatarLista(dados.listaC)}. Para esta faixa de acertos, é preciso ${orientacao.C}
                     </li>
                 </ul>
             </div>
