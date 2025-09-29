@@ -1,0 +1,154 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f9; /* Fundo cinza claro */
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #f7fb22; /* amarelo */
+    color: black;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+    color: #000000;
+}
+/* Seletor de Etapa */
+#etapa-filter-container select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+    display: block; /* Garante que o select ocupe a largura máxima definida */
+    margin-top: 10px;
+}
+
+/* Estilo para cada item de Habilidade */
+.habilidade-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    display: flex; /* Para alinhar o texto e o input */
+    flex-direction: column; /* Coloca o label acima do input */
+}
+
+.habilidade-item label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #555;
+}
+
+.habilidade-item input[type="number"] {
+    padding: 8px;
+    width: 100%;
+    max-width: 100px; /* Limita a largura do campo numérico */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+/* Botão de Gerar Orientação */
+#gerarOrientacaoBtn {
+    background-color: #f7fb22; /* amarelo */
+    color: black;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+#gerarOrientacaoBtn:hover {
+    background-color: #f7fb22;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f7fb22;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Novo CSS para formatar a seção consolidada de Orientação */
+.orientacao-bloco {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9; /* Fundo levemente cinza */
+}
+
+.orientacao-bloco h3 {
+    color: #f7fb22; /* Amarelo */
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.orientacao-bloco ul {
+    list-style: none; /* Remove bolinhas */
+    padding: 0;
+}
+
+.orientacao-bloco li {
+    padding: 8px 0;
+    border-left: 5px solid; /* Linha lateral para dar destaque */
+    margin-bottom: 5px;
+    padding-left: 10px;
+}
+
+/* Cores específicas para os itens da lista */
+.nivelA {
+    border-color: #dc3545; /* Vermelho */
+    background-color: #facdcd; /* Fundo vermelho claro */
+}
+
+.nivelB {
+    border-color: #ffc107; /* Amarelo */
+    background-color: #eeda9a; /* Fundo amarelo claro */
+}
+
+.nivelC {
+    border-color: #28a745; /* Verde */
+    background-color: #4ad36a; /* Fundo verde claro */
+}
