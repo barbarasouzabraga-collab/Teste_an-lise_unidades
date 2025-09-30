@@ -1829,7 +1829,6 @@ const orientacoesPedagogicas = {
         "B": "focar em exercícios de aplicação e resolução de problemas que envolvam a interpretação de coordenadas e a movimentação em malhas quadriculadas. Explore a visualização espacial sem o uso de material concreto.",
         "C": "promover atividades de aprofundamento e desafios complexos, como a análise de vistas ortogonais e a projeção de sombras. Encoraje a criação de figuras compostas e o cálculo de perímetros/áreas complexas."
     },
-    
     "Grandezas e Medidas": {
         "A": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
         "B": "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
@@ -2053,4 +2052,5 @@ function gerarOrientacoes() {
 
 // Inicializa: Cria o seletor de etapa assim que a página estiver pronta
 criarSeletorEtapa();
+
 
