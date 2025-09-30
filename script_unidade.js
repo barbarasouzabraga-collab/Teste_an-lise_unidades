@@ -1871,7 +1871,7 @@ function criarSeletorEtapa() {
     const etapasUnicas = obterEtapasUnicas();
     if (etapasUnicas.length === 0) return;
 
-    let selectHTML = '<h3>1. Escolha a Etapa para Análise:</h3><select id="etapa-selector">';
+    let selectHTML = '<h2>1. Escolha a Etapa para Análise:</h2><select id="etapa-selector">';
     selectHTML += '<option value="">-- Selecione a Etapa --</option>';
 
     etapasUnicas.forEach(etapa => {
@@ -2052,6 +2052,7 @@ function gerarOrientacoes() {
 
 // Inicializa: Cria o seletor de etapa assim que a página estiver pronta
 criarSeletorEtapa();
+
 
 
 
