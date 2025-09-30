@@ -1830,9 +1830,9 @@ const orientacoesPedagogicas = {
         "C": "promover atividades de aprofundamento e desafios complexos, como a análise de vistas ortogonais e a projeção de sombras. Encoraje a criação de figuras compostas e o cálculo de perímetros/áreas complexas."
     },
     "Grandezas e Medidas": {
-        "A": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-        "B": "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-        "C": "excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        "A": "retomar a identificação dos instrumentos de medida (régua, balança, relógio) e a comparação de grandezas (maior/menor, mais pesado/mais leve) usando material concreto. Focar em noções básicas de tempo e dinheiro.",
+        "B": "focar na conversão de unidades básicas (hora/minuto, metro/centímetro, moedas/cédulas). Apresentar problemas de cálculo de duração e perímetro simples.",
+        "C": "promover o cálculo de área e volume de figuras mais complexas e a resolução de problemas de matemática financeira que envolvam juros e taxas simples."
     },
     "Números": {
         "A": "retomar os conceitos de valor posicional e a relação entre as diferentes representações numéricas (frações, decimais). Utilizar o quadro de ordens e classes e a reta numérica para fixação.",
@@ -2052,5 +2052,6 @@ function gerarOrientacoes() {
 
 // Inicializa: Cria o seletor de etapa assim que a página estiver pronta
 criarSeletorEtapa();
+
 
 
